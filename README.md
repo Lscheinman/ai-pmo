@@ -45,6 +45,9 @@ npm run dev
 
 ---
 
+![Demo Screenshot](hhttps://github.com/Lscheinman/ai-pmo/documentation/screenshot.png)
+
+
 ## Run with Docker
 
 ### Dev-ish (simple)
