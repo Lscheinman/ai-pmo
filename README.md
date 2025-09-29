@@ -5,6 +5,10 @@ Use it like an **intelligence analyst meets project manager**: track RACI, explo
 
 **Live demo:** [https://pmo-demo.cfapps.ap10.hana.ondemand.com/](https://pmo-demo.cfapps.ap10.hana.ondemand.com/)
 
+![Demo Screenshot](https://github.com/Lscheinman/ai-pmo/blob/main/documentation/screenshot.png?raw=true)
+
+Try it out by simply chatting with PMO!
+
 ---
 
 ## Quickstart
@@ -44,11 +48,6 @@ npm run dev
 * If you started it with a root path `/api`: `curl http://localhost:8000/api/seed_database`
 
 ---
-
-![Demo Screenshot](https://github.com/Lscheinman/ai-pmo/blob/main/documentation/screenshot.png?raw=true)
-
-Try it out by simply chatting with PMO!
-
 ## Run with Docker
 
 ### Dev-ish (simple)
