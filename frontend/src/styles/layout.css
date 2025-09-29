@@ -1,0 +1,153 @@
+/* ---- MAIN LAYOUT ---- */
+.container {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 2.3rem 2vw 3rem 2vw;
+}
+
+.main-row {
+  display: flex;
+  gap: 2.5rem;
+  align-items: stretch;
+  margin-top: 2.4rem;
+  max-height: 50vh;
+  min-height: 320px;
+}
+
+.table-col,
+.gantt-col {
+  min-width: 340px;
+  flex: 1 1 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.secondary-row {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2.4rem;
+  align-items: flex-start;
+}
+
+.secondary-col {
+  flex: 1 1 0;
+  min-width: 220px;
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.2rem 1.5rem 1.2rem;
+  box-shadow: 0 1.5px 9px rgba(0, 0, 0, 0.09);
+  overflow: auto;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  max-height: 50vh;   /* at most half the screen */
+  overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .main-row {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .table-col,
+  .gantt-col {
+    max-width: 100%;
+  }
+}
+
+.project-table th,
+.project-table td {
+  font-size: 0.88rem; /* Smaller text for compactness */
+  padding: 0.55em 0.75em; /* Less padding vertically and horizontally */
+}
+
+.project-table th {
+  font-weight: 600;
+}
+
+.project-table td {
+  color: var(--text);
+}
+
+/* Compact date cells */
+.project-table .compact-date {
+  white-space: nowrap;
+  font-size: 0.85rem; /* Even smaller text for dates */
+  color: var(--muted);
+}
+
+/* Optional: slightly shorter rows */
+.project-table tbody tr {
+  height: 36px; /* Instead of your current 44px */
+}
+
+.project-table {
+  margin: 0.4rem; /* Small outer margin so it’s not flush with the card */
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 1.5px 9px rgba(0,0,0,0.09);
+}
+
+/* Optional: give table body some padding */
+.project-table tbody td {
+  padding: 0.55em 0.85em; /* slightly looser than before */
+}
+
+/* Make header cells consistent */
+.project-table thead th {
+  padding: 0.65em 0.85em;
+}
+
+.table-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5; /* make sure it's above table rows */
+  background: var(--panel);
+  padding: 0.4rem 0.6rem; /* keeps it looking balanced */
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  /* Optional: subtle shadow to separate it visually */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Allow form rows to wrap */
+.form-row {
+  display: flex;
+  flex-wrap: wrap; /* ✅ Prevents pushing outside modal */
+  gap: 10px;
+}
+
+.form-row.small-inputs label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 90px;
+}
+
+
+/* Shrink date & select fields */
+.form-row.small-inputs input[type="date"],
+.form-row.small-inputs select {
+  font-size: 0.85rem;
+  padding: 4px 6px;
+  height: 28px;
+  line-height: 1.2;
+  min-width: 90px; 
+  max-width: 130px;
+}

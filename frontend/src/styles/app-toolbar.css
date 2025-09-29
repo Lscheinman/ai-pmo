@@ -1,0 +1,46 @@
+/* src/styles/app-toolbar.css */
+.app-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--panel, #181c22);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 3.2rem;
+}
+
+.app-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.app-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.app-toolbar-right input {
+  background: var(--surface, #1f242d);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  width: 300px;
+}
+
+.app-toolbar-left .app-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.app-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

@@ -1,0 +1,231 @@
+/* -------------------- */
+/* Main Layout          */
+/* -------------------- */
+.graph-explorer-container {
+  display: flex;
+  flex-direction: row; /* Horizontal row */
+  height: 100%;
+  min-height: 420px;
+  gap: 1rem;
+}
+
+/* -------------------- */
+/* Left Panel           */
+/* -------------------- */
+.graph-left-panel {
+  width: 30%; /* Fixed width */
+  min-width: 300px; /* Optional safeguard */
+  max-width: 30%; /* Lock to 30% */
+  display: flex;
+  flex-direction: column;
+  background: var(--panel, #5f5f5f);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  max-height: 800px;  /* or use 80vh for responsive */
+  height: 100%;
+}
+
+/* Toolbar */
+.graph-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding: 0.4rem;
+  background: var(--panel, #181c22);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.graph-toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.graph-toolbar-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.graph-toolbar-btn.active {
+  background: var(--muted-hover);
+  color: var(--text);
+}
+
+.graph-toolbar-label {
+  font-size: 0.85rem;
+}
+
+/* Card Area */
+.graph-card {
+  flex: 1;
+  overflow-y: auto;
+  transition: flex 0.3s ease, max-height 0.3s ease;
+}
+
+.graph-card.collapsed {
+  max-height: 35%; /* Shrinks when a node is selected */
+}
+
+/* Node Details */
+.graph-node-details {
+  flex: 1;
+  overflow-y: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.5rem;
+  background: var(--panel, #101318);
+}
+
+/* -------------------- */
+/* Right Panel (Canvas) */
+/* -------------------- */
+.graph-right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel, #181c22);
+  border-radius: 6px;
+  overflow: hidden;
+}
+/* Tighter space between panels */
+.graph-explorer-container {
+  gap: 0.6rem; /* was 1rem */
+}
+
+/* Make left panel responsive: 32%–40% (with a hard px floor), not hard-30% */
+.graph-left-panel {
+  /* remove width/max-width from the old block */
+  width: auto;
+  max-width: none;
+
+  /* responsive basis with min/max guardrails */
+  flex: 0 0 clamp(32%, 380px, 40%);
+  min-width: 360px;      /* bump the floor */
+}
+
+/* When a node is selected, give the details more room */
+.graph-left-panel.with-details {
+  flex-basis: clamp(38%, 480px, 48%);
+}
+
+/* Make sure the canvas column can shrink without overflow */
+.graph-right-panel {
+  flex: 1 1 auto;
+  min-width: 0; /* important so the FG canvas doesn’t force overflow */
+}
+
+/* PersonModal – Relationships */
+.rel-section {
+  grid-column: 1 / -1;
+  margin-top: 12px;
+}
+
+.rel-title {
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.rel-empty {
+  color: var(--muted-hover);
+  margin-bottom: 6px;
+}
+
+/* Existing relations list */
+.rel-list {
+  display: grid;
+  gap: 8px;
+  max-height: 260px;         /* keeps it contained; scrolls if long */
+  overflow: auto;
+}
+
+.rel-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 160px minmax(0,1fr) auto;
+  align-items: center;
+  gap: 8px;
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.rel-row > * {
+  min-width: 0; /* allow children to shrink inside grid cells */
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rel-type,
+.rel-note,
+.rel-add select,
+.rel-add input {
+  width: 100%;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+}
+
+.rel-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Add new relations */
+.rel-add {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: minmax(220px,1fr) 180px minmax(160px,1fr) auto;
+  gap: 8px;
+  align-items: start;
+}
+
+.rel-add > * {
+  min-width: 0; /* prevent overflow */
+}
+
+/* Wrapper so PersonMultiSelect never overflows */
+.rel-add-target {
+  min-width: 0;
+}
+
+/* Align the "Add" button row */
+.rel-add-actions {
+  align-self: end;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.rel-reciprocal {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* Responsive: stack gracefully on smaller modals */
+@media (max-width: 980px) {
+  .rel-row {
+    grid-template-columns: 1fr;
+  }
+  .rel-actions {
+    justify-content: flex-start;
+  }
+  .rel-add {
+    grid-template-columns: 1fr;
+  }
+}

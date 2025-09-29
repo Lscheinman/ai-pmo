@@ -1,0 +1,26 @@
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+
+  /* Force perfect circle */
+  width: 2.25em;
+  height: 2.25em;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--text);
+
+  font-size: 1em;
+  transition: background 0.13s, color 0.13s, transform 0.10s;
+}
+
+.icon-btn:hover,
+.icon-btn:focus {
+  background: var(--accent-hover);
+  color: #fff;
+  transform: scale(1.1);
+}

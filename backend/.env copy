@@ -1,0 +1,20 @@
+HANA_HOST=pmo-db-demo.hana.ap10.hana.ondemand.com
+HANA_PASSWORD=Welcome01!1
+HANA_USER=DBADMIN
+HANA_PORT=443
+CHAT_USER=CHATBOT
+CHAT_PASSWORD=Welcome01!1
+AICORE_CLIENT_ID=f4e2e3b3-1dcb-4a0c-8f3a-1e5f3c8e5b6d
+AICORE_CLIENT_SECRET=u8t8Q~X3X8Q2Q-8Q2Q-8Q2Q-8Q2Q-8Q2Q2Q
+AICORE_AUTH_URL=https://def-ai.authentication.ap10.hana.ondemand.com
+AICORE_BASE_URL=https://api.ai.prod.ap-southeast-2.aws.ml.hana.ondemand.com/v2
+AICORE_RESOURCE_GROUP=default
+API_KEY=123
+USERNAME = 'xxxx'
+PASSWORD = 'xxxxx'
+PROMPT_LOG_ENABLED=true
+PROMPT_LOG_PATH=./logs/prompts.jsonl
+PROMPT_LOG_REDACT=true
+PROMPT_VALIDATE_STRICT=false
+
+ 

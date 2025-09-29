@@ -1,0 +1,190 @@
+/* ---- FORM STYLES ---- */
+.modal-body form,
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.modal label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.98em;
+  font-weight: 600;
+  color: var(--muted, #b0b5c2);
+  gap: 0.48em;
+}
+
+.modal input,
+.modal textarea,
+.modal select {
+  font-family: inherit;
+  font-size: 1em;
+  background: #202632;
+  color: #f3f6fc;
+  border: 1.7px solid #242b39;
+  border-radius: 7px;
+  padding: 0.58em 0.7em;
+  outline: none;
+  transition: border-color 0.18s, background 0.17s;
+  resize: none;
+}
+.modal textarea {
+  min-height: 68px;
+  max-height: 180px;
+}
+.modal input:focus,
+.modal textarea:focus,
+.modal select:focus {
+  border-color: var(--accent, #2ae98d);
+  background: #232c3b;
+}
+.modal select {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* ---- CHECKBOX ---- */
+.modal input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  margin-right: 6px;
+}
+
+/* Let modal content scroll instead of clipping */
+.modal .modal-body {
+  overflow: auto;           /* vertical & horizontal if needed */
+  max-width: 100%;
+}
+
+/* Safe flex fix so children can actually shrink in flex layouts */
+.modal .form-grid,
+.modal .form-row,
+.modal label {
+  min-width: 0;
+}
+
+/* Horizontal scroll wrapper for wide tables or grids */
+.modal-hscroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* If the wide thing is a table, let it size to its content */
+.modal-hscroll table {
+  width: max-content;       /* grow to fit columns */
+  min-width: 100%;          /* but not smaller than the container */
+  border-collapse: separate; /* avoids some clipping glitches in shadows */
+}
+
+/* Optional: avoid huge cells caused by long strings */
+.modal-hscroll th,
+.modal-hscroll td {
+  white-space: nowrap;      /* keep columns compact */
+  max-width: 400px;         /* cap cell width */
+  overflow: hidden;
+  text-overflow: ellipsis;  /* visually truncate */
+}
+
+/* --- Assign picker: dark dropdown --- */
+.picker { position: relative; }
+.picker__list {
+  position: absolute; z-index: 30; top: calc(100% + 6px); left: 0; right: 0;
+  max-height: 240px; overflow: auto;
+  background: #202632; border: 1px solid #2a3140; border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+}
+.picker__item {
+  padding: 8px 10px; cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: #f3f6fc;
+}
+.picker__item:last-child { border-bottom: none; }
+.picker__item:hover, .picker__item.is-active { background: #232c3b; }
+.picker__label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.picker__empty {
+  position: absolute; z-index: 30; top: calc(100% + 6px); left: 0; right: 0;
+  background: #202632; border: 1px solid #2a3140; border-radius: 8px; padding: 10px;
+  color: #b0b5c2; box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+}
+.picker__selected { margin-top: 6px; font-size: 0.92em; color: #b0b5c2; }
+.picker__selected .link-btn { margin-left: 8px; }
+
+/* --- Assign fieldset --- */
+.assign-fieldset { border: 1px solid #2a3140; border-radius: 10px; padding: 12px; }
+.assign-fieldset legend { padding: 0 6px; color: var(--muted, #b0b5c2); font-weight: 700; }
+
+/* --- Virtual list for members viewer --- */
+.virtual-list { overflow: auto; position: relative; }
+.vl--h-320 { height: 320px; }
+.vl__row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  padding: 6px 10px; border-bottom: 1px solid #2a3140; background: #202632; color: #f3f6fc;
+}
+.vl__cell { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* small utility */
+.muted { color: var(--muted, #b0b5c2); }
+.form-grid { display: grid; gap: 10px; }
+.form-row { display: flex; align-items: center; gap: 10px; }
+
+/* Assign header: one line, compact */
+.assign-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+/* Let search grow but still shrink if space is tight */
+.assign-controls .flex-1 {
+  flex: 1 1 auto;
+  min-width: 0;         /* prevents overflow */
+}
+
+/* Keep selects compact */
+.assign-controls select {
+  max-width: 160px;     /* adjust if you want tighter/looser */
+}
+
+/* RACI label + select as a single compact inline block */
+.raci-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+
+/* keep label + select on one line */
+.inline-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+/* Make the tag filter button lay out like the input */
+.tag-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Match FilterInput's placeholder vibe: subtle + italic */
+.tag-filter-btn .filter-input__placeholder {
+  font-style: italic;
+  opacity: 0.7;           /* subtle */
+  color: #9fb2c8;         /* tweak if your FilterInput placeholder uses a different tone */
+  font-weight: 400;
+}
+
+/* Keep the count pill normal (not italic, full opacity) */
+.tag-filter-btn .tag-filter-count {
+  font-style: normal;
+  opacity: 1;
+}

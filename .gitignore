@@ -1,0 +1,6 @@
+.DS_Store
+.vscode/launch.json
+backend/.env
+/backend/__pycache__
+*.pyc
+cf-vars.yml

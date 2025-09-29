@@ -1,0 +1,112 @@
+.add-project-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--text);
+  color: #12211a;
+  border: none;
+  border-radius: 99em;
+  padding: 0.60em 1.55em 0.60em 1.17em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.13s, transform 0.10s;
+}
+.add-project-btn:hover {
+  background: var(--accent-hover);
+  color: #fff;
+  transform: scale(1.045);
+}
+
+.switch-btn {
+  background: var(--panel);
+  color: var(--text);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.15s, color 0.15s;
+}
+
+.switch-btn:hover {
+  background: var(--accent-hover);
+  color: #fff; /* white on hover */
+}
+
+.switch-btn.active {
+  background: var(--accent);
+  color: #fff; /* white for active */
+}
+
+/* ---------- Dark Pills / Chips ---------- */
+:root {
+  /* fallbacks if not already defined */
+  --pill-bg: var(--panel, #1e2320);
+  --pill-bg-hover: var(--accent-hover, #2c6e49);
+  --pill-bg-active: var(--accent, #2b9348);
+  --pill-text: var(--text, #e9f1ec);
+  --pill-text-muted: rgba(233, 241, 236, 0.75);
+  --pill-border: rgba(233, 241, 236, 0.12);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45em 0.9em;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  border: 1px solid var(--pill-border);
+  font-weight: 600;
+  line-height: 1;
+  cursor: default;
+  user-select: none;
+}
+
+.pill--button {
+  cursor: pointer;
+  transition: background 0.14s ease, transform 0.1s ease, color 0.14s ease;
+}
+.pill--button:hover { background: var(--pill-bg-hover); color: #fff; transform: translateY(-1px); }
+.pill--active { background: var(--pill-bg-active); color: #fff; border-color: transparent; }
+
+.pill__title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pill__tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2em 0.55em;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  color: var(--pill-text-muted);
+}
+
+.pill__dot {
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  display: inline-block;
+  flex: 0 0 auto;
+  opacity: 0.95;
+}
+
+/* Graph history toolbar layout niceties */
+.ghb__item { display: inline-flex; align-items: center; gap: 6px; }
+.ghb__item.is-active .pill--button { transform: scale(1.025); }
+.ghb__close { margin-left: 4px; opacity: 0.8; }
+.ghb__close:hover { opacity: 1; }
+
+/* Connected chips (clickable) */
+.chip {
+  color-scheme: pill; /* if you use CSS modules, else keep duplicate rules */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.38em 0.8em;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  border: 1px solid var(--pill-border);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.14s ease, color 0.14s ease, transform 0.1s ease;
+}
+.chip:hover { background: var(--pill-bg-hover); color: #fff; transform: translateY(-1px); }

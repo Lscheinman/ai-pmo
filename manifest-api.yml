@@ -1,0 +1,19 @@
+applications:
+  - name: pmo-api-demo
+    path: backend
+    buildpacks:
+      - python_buildpack
+    memory: 512M
+    disk_quota: 1G
+    instances: 1
+    # Explicit route on the same host as the web app, but under /api
+    routes:
+      - route: pmo-demo.cfapps.ap10.hana.ondemand.com/api
+    env:
+      DATABASE_URL: sqlite:////home/vcap/app/storage/app.db
+      APP_ENV: production
+    command: >
+      sh -lc '
+        mkdir -p storage &&
+        python -m uvicorn main:app --host 0.0.0.0 --port ${PORT} --root-path /api
+      '

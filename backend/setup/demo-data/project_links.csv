@@ -1,0 +1,2 @@
+project_key,title,url,description,kind,added_by_person_key,sort_order,is_pinned
+proj_alpha,GitHub Repo,https://github.com/acme/alpha,Source code,repo,p_alice,10,false

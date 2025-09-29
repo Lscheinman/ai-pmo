@@ -1,0 +1,289 @@
+.chat-dropdown {
+  position: absolute;
+  right: 2rem;
+  top: 5rem;
+  width: 400px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: rgba(30, 30, 30, 0.95);
+  color: #eee;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  padding: 1rem;
+  z-index: 1000;
+  font-size: 0.8rem; /* ⬅️ Add this to reduce text size globally */
+  line-height: 1.2;
+}
+
+@keyframes colorCycle {
+  0% { color: rgb(0, 147, 108); }
+  25% { color: rgb(1, 173, 127); }
+  50% { color: rgb(1, 224, 165); }
+  100% { color: rgb(0, 255, 187); }
+}
+
+.chat-dropdown-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 4px 8px;
+  border-bottom: 1px solid #020101;
+  background: #2a282800;
+}
+
+
+.clickable-entity {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3em 0.7em;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background .15s ease, transform .06s ease, border-color .15s ease;
+}
+.clickable-entity:hover { background: var(--accent-hover); color:#fff; border-color: transparent; transform: translateY(-1px); }
+
+/* Tiny center-bottom toast */
+.toast-mini {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  background: #242b39;
+  color: #fff;
+  padding: 0.6em 1.1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 18px rgba(0,0,0,.35);
+  font-weight: 700;
+  font-size: 0.95rem;
+  z-index: 10000;
+}
+
+.clickable-entity:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent), white 30%);
+  outline-offset: 2px;
+}
+
+.chat-message {
+  padding: 0.5rem 0.6rem;
+  line-height: 1.35;
+  margin: 0.25rem 0;
+  border-radius: 6px;
+  max-width: 95%;
+  white-space: pre-wrap;
+  font-size: 0.8rem;
+}
+
+/* --- Chat layout / rhythm --- */
+.chat-message { line-height: 1.45; }
+.chat-message .chat-h1 { font-size: 1.35rem; margin: 0 0 .8rem; font-weight: 800; }
+.chat-message .chat-h2 { font-size: 1.15rem; margin: 1.1rem 0 .5rem; font-weight: 750; color: var(--muted-hover); }
+.chat-message .chat-h3 { font-size: 1.02rem; margin: .9rem 0 .4rem; font-weight: 700; opacity: .9; }
+
+.chat-message .chat-p { margin: .45rem 0; }
+.chat-message .chat-ul,
+.chat-message .chat-ol { margin: .35rem 0 .7rem 1.05rem; }
+.chat-message .chat-li { margin: .18rem 0; }
+.chat-message .chat-hr { border: 0; height: 1px; background: rgba(255,255,255,.08); margin: .9rem 0; }
+.inline-code {
+  background: rgba(255,255,255,.06);
+  padding: .1em .35em;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .92em;
+}
+
+/* --- Pills (entity chips) --- */
+/* Generic chip style, uses --chip-color picked by a chip--* class */
+.chat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  padding: .28em .7em;
+  border-radius: 999px;
+  color: var(--text);
+  font-weight: 700;
+  font-size: .92rem;
+  cursor: pointer;
+  transition: background .15s ease, transform .06s ease, border-color .15s ease, color .15s ease;
+
+  /* 🎯 Centralized tinting from tokens */
+  background: color-mix(in oklab, var(--chip-color) var(--chip-bg-strength), transparent);
+  border: 1px solid color-mix(in oklab, var(--chip-color) var(--chip-brd-strength), transparent);
+}
+
+.chat-chip:hover {
+  background: color-mix(in oklab, var(--chip-color) calc(var(--chip-bg-strength) + 10%), transparent);
+  border-color: color-mix(in oklab, var(--chip-color) calc(var(--chip-brd-strength) + 10%), transparent);
+  transform: translateY(-1px);
+}
+
+.chat-chip .chip-dot {
+  width: .55em; height: .55em; border-radius: 50%;
+  background: currentColor; opacity: .85;
+}
+
+/* Per-type: pick the color token (no rgba anywhere) */
+.chip--person  { --chip-color: var(--chip-person); }
+.chip--task    { --chip-color: var(--chip-task); }
+.chip--project { --chip-color: var(--chip-project); }
+.chip--group   { --chip-color: var(--chip-group); }
+.chip--tag     { --chip-color: var(--chip-tag); }
+
+/* Tiny toast */
+.toast-mini {
+  position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+  background: #242b39; color: #fff; padding: .6em 1.1em; border-radius: 8px;
+  box-shadow: 0 2px 18px rgba(0,0,0,.35); font-weight: 700; font-size: .95rem; z-index: 10000;
+}
+
+
+.chat-message.user {
+  background: #444;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.chat-message.ai {
+  background: #222;
+  color: #ccc;
+  align-self: flex-start;
+}
+
+.typing-indicator span {
+  display: inline-block;
+  animation: colorCycle 2s linear infinite;
+  font-weight: 500;
+}
+
+.typing-indicator .dot {
+  animation: blink 1.4s infinite both;
+}
+
+.typing-indicator {
+  font-style: italic;
+  font-size: 0.9rem;
+  opacity: 0.75;
+  padding: 0.4rem 0.7rem;
+  color: #aaa;
+  background: #222;
+  border-radius: 8px;
+  max-width: 95%;
+  align-self: flex-start;
+}
+
+.typing-indicator .dot {
+  animation: blink 1.2s infinite;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.typing-indicator .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-indicator .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.clickable-entity {
+  color: #4caf50;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline;
+}
+.clickable-entity:hover {
+  color: #2e7d32;
+}
+
+.chat-history {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.chat-close-button {
+  background: linear-gradient(to right, #409bf0, #14ba93);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  margin: 8px;
+  align-self: flex-end;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.chat-close-btn:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes blink {
+  0%, 20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* --- Compact, no-indent markdown lists inside chat --- */
+.chat-message .chat-ul,
+.chat-message .chat-ol {
+  margin: .25rem 0 .35rem 0;   /* no left margin */
+  padding-left: 0;             /* remove browser indent */
+  list-style-position: inside; /* bullets/numbers align with text */
+}
+
+/* If you prefer zero bullets/numbers, uncomment: */
+/* .chat-message .chat-ul, .chat-message .chat-ol { list-style: none; } */
+
+.chat-message .chat-li {
+  margin: .12rem 0;            /* tighter row spacing */
+  padding-left: 0;
+}
+
+/* Prevent nested lists from re-indenting */
+.chat-message .chat-li > .chat-ul,
+.chat-message .chat-li > .chat-ol {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Headings (make bottom margin tiny) */
+.chat-message .chat-h1 { font-size: 1.05rem; margin: .35rem 0 .18rem; font-weight: 800; }
+.chat-message .chat-h2 { font-size: .98rem;  margin: .3rem 0 .16rem;  font-weight: 750; color: var(--muted-hover); }
+.chat-message .chat-h3 { font-size: .95rem;  margin: .28rem 0 .14rem;  font-weight: 700; opacity: .9; }
+
+/* Paragraphs (tighten a bit) */
+.chat-message .chat-p { margin: .22rem 0; }
+
+/* Lists (remove indent and tighten) */
+.chat-message .chat-ul,
+.chat-message .chat-ol {
+  margin: .18rem 0 .28rem 0; /* smaller top/bottom */
+  padding-left: 0;
+  list-style-position: inside;
+}
+.chat-message .chat-li { margin: .08rem 0; padding-left: 0; }
+
+/* Kill extra space when a list immediately follows a heading */
+.chat-message .chat-h1 + .chat-ul,
+.chat-message .chat-h1 + .chat-ol,
+.chat-message .chat-h2 + .chat-ul,
+.chat-message .chat-h2 + .chat-ol,
+.chat-message .chat-h3 + .chat-ul,
+.chat-message .chat-h3 + .chat-ol {
+  margin-top: .06rem;
+}
+
+/* Trim outer edges so the first/last block don’t add padding feel */
+.chat-message > *:first-child { margin-top: 0; }
+.chat-message > *:last-child  { margin-bottom: 0; }
+

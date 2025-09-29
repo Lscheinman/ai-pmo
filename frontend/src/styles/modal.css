@@ -1,0 +1,214 @@
+/* ---- MODAL OVERLAY ---- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(24, 26, 32, 0.74);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(3px);
+}
+
+/* ---- MODAL CORE ---- */
+.modal {
+  background: #181c22;
+  border-radius: 18px;
+  box-shadow: 0 6px 42px rgba(0,0,0,0.36), 0 1px 2px rgba(24,28,36,0.24);
+  color: var(--text, #e4e7ef);
+  display: flex;
+  flex-direction: column;
+  min-width: 340px;
+  max-width: 560px;   /* default = md */
+  max-height: 90vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+  animation: modalPop 0.19s cubic-bezier(.42,1.49,.6,1) both;
+}
+
+/* Size modifiers (use size prop -> modal--lg, modal--xl) */
+.modal--lg { max-width: 760px; }
+.modal--xl { max-width: 980px; }
+
+/* ---- HEADER (sticky) ---- */
+.modal-header {
+  background: #23283a;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 1.3rem 2.1rem 1.1rem 2.1rem;
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+  border-bottom: 1.3px solid #060606;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent, #2ae98d);
+  letter-spacing: 0.01em;
+}
+
+/* Header action cluster (Delete, Save, Close) */
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ---- BODY (scrollable) ---- */
+.modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1.2rem 2.1rem;
+  max-height: 60vh;
+  overflow-x: hidden;
+}
+
+/* ---- FOOTER (sticky) ---- */
+.modal-footer {
+  background: #23283a;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  padding: 1.08rem 2.1rem 1.15rem 2.1rem;
+  border-top: 1.3px solid #232c3b;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.85em;
+}
+
+.modal-footer button {
+  min-width: 90px;
+}
+
+/* Prevent modal horizontal scroll on nested content wrappers */
+.modal-content {
+  overflow-x: hidden;
+}
+
+
+/* ---- PersonModal — Relationships ---- */
+.modal .rel-section {
+  grid-column: 1 / -1;
+  margin-top: 0.25rem;
+}
+
+.modal .rel-title {
+  font-weight: 700;
+  opacity: 0.9;
+  margin-bottom: 0.4rem;
+}
+
+.modal .rel-empty {
+  color: var(--muted, #b0b5c2);
+}
+
+/* List container stays inside the modal */
+.modal .rel-list {
+  display: grid;
+  gap: 0.6rem;
+  max-height: 240px;      /* keeps list contained; scrolls if long */
+  overflow-y: auto;
+  padding-right: 2px;     /* avoids scrollbar overlay on content */
+}
+
+/* One relation row */
+.modal .rel-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px minmax(0, 1fr) auto;
+  gap: 0.6rem;
+  align-items: start;
+  padding: 0.6rem;
+  background: #202632;             /* matches .modal input bg */
+  border: 1.7px solid #242b39;     /* matches .modal input border */
+  border-radius: 7px;              /* matches .modal input radius */
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.modal .rel-item > .rel-col {
+  min-width: 0;                    /* allow shrinking inside grid cells */
+}
+
+/* Column label inside a grid cell (uses your label look) */
+.modal .rel-label {
+  display: block;
+  font-size: 0.98em;
+  font-weight: 600;
+  color: var(--muted, #b0b5c2);
+  margin-bottom: 0.35rem;
+}
+
+/* Inputs/selects inherit your .modal input styles automatically */
+.modal .rel-type select,
+.modal .rel-note input {
+  width: 100%;
+}
+
+/* Utility */
+.modal .truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Add-new block */
+.modal .rel-add {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.modal .rel-add-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px minmax(0, 1fr) auto;
+  gap: 0.6rem;
+}
+
+.modal .rel-target { grid-column: 1 / -1; }
+
+.modal .rel-actions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.modal .rel-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+
+/* Responsive: stack nicely on small modal widths */
+@media (max-width: 760px) {
+  .modal .rel-item,
+  .modal .rel-add-row {
+    grid-template-columns: 1fr;
+  }
+  .modal .rel-actions {
+    justify-content: flex-start;
+  }
+}
+
+
+/* ---- ANIMATION ---- */
+@keyframes modalPop {
+  from { opacity: 0; transform: translateY(32px) scale(0.96);}
+  to   { opacity: 1; transform: none;}
+}
+
+/* Optional: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .modal {
+    animation: none;
+  }
+}

@@ -1,0 +1,46 @@
+/* base.css (tokens) */
+:root {
+  --accent: #777777;
+  --accent-hover: #464646;
+  --bg: #171b20;
+  --panel: #232833;
+  --border: #2a303b;
+  --radius: 14px;
+  --text: #e6e7eb;
+  --muted: #87cfd6;
+  --muted-hover: #00E5FF;
+
+  --danger: #c70000;
+  --success: #01820a;
+  --warning: #c79f00;
+
+  --status-planned:   #ffffff;
+  --status-confirmed: #d5d200;
+  --status-complete:  #02589e;
+  --status-running:  #01c35c;
+  --status-blocked:   #c70000;
+  --status-canceled:  #6b6564;
+
+  --color-primary: #4caf50;
+  --color-success: #4caf50;
+  --color-warning: #c79f00;
+  --color-danger:  #4caf50;
+  --color-neutral: #4caf50;
+
+  /* chip brand colors */
+  --chip-person:  #400099;
+  --chip-task:    #006e46;
+  --chip-project: #009860;
+  --chip-group:   #005939;
+  --chip-tag:     #006748;
+
+  /* global “tint” strengths for chips */
+  --chip-bg-strength:   100%;
+  --chip-brd-strength:  22%;
+
+  --panel: #07000b;
+  --line:  #343434;
+  --muted: #9fb3ac;
+  --muted-hover: #cfe1db;
+  --radius: 14px;
+}

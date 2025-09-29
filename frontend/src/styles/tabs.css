@@ -1,0 +1,60 @@
+/* Segmented tab bar */
+.tabbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 4px;
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius, 12px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Individual tab buttons */
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.06s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+.tab-btn:active {
+  transform: translateY(1px);
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Icon inside a tab */
+.tab-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Keyboard focus */
+.tab-btn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent), white 30%);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+/* If you want icon-only tabs at compact widths */
+@media (max-width: 520px) {
+  .tab-btn .tab-label { display: none; }
+}
+

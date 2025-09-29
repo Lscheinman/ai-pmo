@@ -1,0 +1,22 @@
+/* src/styles/index.css */
+@import "./_variables.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./buttons.css";
+@import "./icon-buttons.css";
+@import "./modal.css";
+@import "./form.css";
+@import "./badges.css";
+@import "./toast.css";
+@import "./card.css";
+@import "./gantt.css";
+@import "./graph.css";
+@import "./app-toolbar.css";
+@import "./inputs.css";
+@import "./chat.css";
+@import "./ghb.css";
+@import "./panel.css";
+@import "./tabs.css";
+@import "./date-picker.css";
+@import "./linksTab.css";
+

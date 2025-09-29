@@ -1,0 +1,75 @@
+/* Container: controls fixed on the left, scroller takes remaining width */
+.ghb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0; /* allow scroller to shrink */
+}
+
+.ghb__controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto; /* fixed */
+}
+
+.ghb__scroller {
+  flex: 1 1 auto;         /* fills remaining space */
+  min-width: 0;           /* enables proper overflow */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;        /* horizontal scroll */
+  padding: 2px 0;
+  scrollbar-width: thin;   /* Firefox */
+}
+
+/* WebKit scrollbar (optional) */
+.ghb__scroller::-webkit-scrollbar { height: 6px; }
+.ghb__scroller::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+/* Pills */
+.ghb__item {
+  display: flex;
+  align-items: center;
+}
+
+.ghb__item .add-project-btn {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  padding: 0.4em 1.1em;
+  line-height: 1.15;
+}
+
+.ghb--compact .ghb__item .add-project-btn {
+  font-size: 0.8rem;
+  padding: 0.35em 0.9em;
+}
+
+.ghb__tag {
+  margin-left: 0.5em;
+  background: var(--panel);
+  padding: 0.12em 0.5em;
+  border-radius: 0.5em;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Close button next to pill */
+.ghb__close {
+  margin-left: 4px;
+}
+
+/* Disabled icon buttons look inactive */
+.icon-btn.neutral:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Optional: subtle active nudge */
+.ghb__item.is-active .add-project-btn {
+  transform: translateY(-0.5px);
+}

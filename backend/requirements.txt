@@ -1,0 +1,17 @@
+pandas
+Flask-SQLAlchemy
+SQLAlchemy
+networkx
+uvicorn
+fastapi
+pydantic
+httpx
+python-dotenv
+pytest
+python-multipart
+email-validator
+rapidfuzz
+loguru
+generative-ai-hub-sdk
+faker
+python-pptx

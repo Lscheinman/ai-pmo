@@ -1,0 +1,22 @@
+applications:
+  - name: pmo-web-demo
+    path: frontend
+    buildpacks:
+      - nodejs_buildpack
+    memory: 512M
+    disk_quota: 2G
+    instances: 1
+    # Root route for the SPA on the same host
+    routes:
+      - route: pmo-demo.cfapps.ap10.hana.ondemand.com
+    env:
+      NODE_ENV: production
+      NPM_CONFIG_PRODUCTION: "false"  # allow dev deps for Vite build
+      VITE_API_BASE: /api            # the SPA calls the API at /api
+    command: >
+      bash -lc '
+        npm ci &&
+        npm run build &&
+        npm prune --omit=dev &&
+        npx --yes serve -s dist -l ${PORT}
+      '

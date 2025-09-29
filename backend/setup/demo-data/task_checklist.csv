@@ -1,0 +1,4 @@
+task_key,title,status,order
+t_kickoff,Schedule meeting,complete,0
+t_kickoff,Invite stakeholders,started,1
+t_plan,Outline sections,not started,0

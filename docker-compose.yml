@@ -1,0 +1,26 @@
+# docker-compose.yml
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file:
+      - ./backend/.env
+    environment:
+      PYTHONPATH: /app          
+    expose:
+      - "8000"
+    volumes:
+      - ./backend/db:/app/backend/db
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000 --root-path /api
+
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_BASE: "/api"
+    ports:
+      - "8080:80"
+    depends_on:
+      - api

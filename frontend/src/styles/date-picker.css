@@ -1,0 +1,154 @@
+.dark-date-picker {
+  background: var(--panel, #181c22);
+  color: var(--fg, #e8efe9);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  border-radius: 12px;
+  padding: 8px;
+  backdrop-filter: blur(6px);
+}
+
+.dark-date-picker .dp-header {
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  align-items: center;
+  padding: 4px 6px 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.dark-date-picker .dp-title { text-align: center; font-weight: 700; opacity: 0.9; }
+.dark-date-picker .dp-nav {
+  height: 28px; width: 28px; border-radius: 999px;
+  border: none; background: transparent; color: inherit; cursor: pointer;
+}
+.dark-date-picker .dp-nav:hover { background: rgba(255,255,255,0.08); }
+
+.dark-date-picker .dp-week {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 4px; padding: 8px 6px 2px; font-size: 11px; opacity: 0.7;
+}
+.dark-date-picker .dp-weekday { text-align: center; }
+
+.dark-date-picker .dp-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 4px; padding: 4px 6px 8px;
+}
+.dark-date-picker .dp-cell {
+  height: 32px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.03); color: inherit; cursor: pointer;
+  font-weight: 600;
+}
+.dark-date-picker .dp-cell:hover { background: rgba(255,255,255,0.08); }
+.dark-date-picker .dp-cell.muted { opacity: 0.45; }
+.dark-date-picker .dp-cell.disabled { opacity: 0.28; cursor: not-allowed; }
+.dark-date-picker .dp-cell.selected {
+  background: color-mix(in srgb, var(--accent, #4dd0e1) 16%, transparent);
+  border-color: color-mix(in srgb, var(--accent, #4dd0e1) 60%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #4dd0e1) 40%, transparent) inset;
+}
+.dark-date-picker .dp-cell.today {
+  outline: 1px dashed rgba(255,255,255,0.25);
+  outline-offset: -3px;
+}
+.dark-date-picker .dp-cell.kbd { box-shadow: 0 0 0 2px rgba(255,255,255,0.14) inset; }
+
+.dark-date-picker .dp-footer {
+  display: flex; gap: 8px; justify-content: space-between;
+  padding: 6px; border-top: 1px solid rgba(255,255,255,0.06);
+}
+.dark-date-picker .dp-action {
+  padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05); color: inherit; cursor: pointer; font-weight: 600;
+}
+.dark-date-picker .dp-action.subtle { background: transparent; }
+.dark-date-picker .dp-action:hover { background: rgba(255,255,255,0.08); }
+
+
+.dark-date-picker {
+  background: #11161b;
+  color: #eaf2ed;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  padding: 10px;
+}
+
+.dp-header { display:flex; align-items:center; justify-content:space-between; padding: 6px 6px 8px; }
+.dp-title { font-weight: 600; font-size: 14px; opacity: 0.95; }
+.dp-nav { background: transparent; border: 0; color: #eaf2ed; font-size: 16px; padding: 4px 8px; cursor: pointer; }
+
+.dp-week { display:grid; grid-template-columns: repeat(7, 1fr); gap: 4px; padding: 0 4px 6px; }
+.dp-weekday { font-size: 11px; text-align:center; color: rgba(234,242,237,0.7); }
+
+.dp-grid { display:grid; grid-template-columns: repeat(7, 1fr); gap: 4px; padding: 0 4px 6px; }
+.dp-cell {
+  height: 32px; border-radius: 8px; border: 0; background: #1a2026; color: #eaf2ed;
+  cursor: pointer; font-size: 12px;
+}
+.dp-cell.muted { color: rgba(234,242,237,0.45); background: #141a20; }
+.dp-cell.today { outline: 1px solid rgba(255, 221, 87, 0.6); }
+.dp-cell.selected { background: #2c7a64; color: #fff; }
+.dp-cell.disabled { opacity: 0.35; cursor: not-allowed; }
+
+.dp-footer { display:flex; justify-content: space-between; gap: 6px; padding: 6px 4px 2px; }
+.dp-action { background: #1f2a33; color: #eaf2ed; border: 0; border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+.dp-action.subtle { background: #161c22; }
+
+/* header: allow title to be clickable */
+.dp-title.as-button {
+  background: transparent;
+  border: 0;
+  color: #eaf2ed;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* months grid: 4 x 3 */
+.dp-grid.months {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 6px 6px 8px;
+}
+.month-cell { height: 40px; }
+
+/* years grid: 4 x 3 (12 years) */
+.dp-grid.years {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 6px 6px 8px;
+}
+.year-cell { height: 42px; }
+
+/* subtle ghost label in footer (month/year views) */
+.dp-title-ghost {
+  opacity: 0.7;
+  font-size: 12px;
+  padding-left: 6px;
+}
+.dark-date-picker .dp-cell.today {
+  background: #fff;
+  color: #000;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* If today is also selected, selected style wins */
+.dark-date-picker .dp-cell.today.selected {
+  background: #007bff; /* or your accent color */
+  color: #fff;
+}
+
+.field-date__label { font-size: 12px; color: #cfd8d3; }
+.field-date__input {
+  background: #0f1419; color: #eaf2ed; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 8px 10px; font-size: 13px; width: 100%;
+}
+.field-date__btn {
+  background: #1a2026; color: #eaf2ed; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 6px 8px; display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.field-date__btn:hover { background: #202731; }

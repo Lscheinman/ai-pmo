@@ -1,0 +1,39 @@
+/* Gantt chart toolbar */
+.gantt-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--panel);
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Gantt chart labels and headers */
+.gantt-col .gantt-label,
+.gantt-col .gantt-header,
+.gantt-col .gantt-axis text {
+  fill: var(--text) !important; /* Force readable text */
+  color: var(--text) !important;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Optional: lighten slightly for better visibility */
+.gantt-col .gantt-header {
+  color: var(--muted-hover) !important;
+  fill: var(--muted-hover) !important;
+}
+
+/* Keep grid lines muted */
+.gantt-col .gantt-grid-line {
+  stroke: rgba(255,255,255,0.1);
+}
+
+@keyframes todayPulseAnim {
+  0%   { transform: scale(0.8); opacity: 0.3; }
+  50%  { transform: scale(1.1); opacity: 0; }
+  100% { transform: scale(0.8); opacity: 0; }
+}

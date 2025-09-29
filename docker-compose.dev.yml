@@ -1,0 +1,33 @@
+services:
+  api:
+    volumes:
+      - ./backend:/app
+      - ./backend/db:/app/backend/db
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --root-path /api --reload --reload-dir /app
+    ports:
+      - "8000:8000"
+
+  # Dev: build FE continuously into a named volume and serve via nginx
+  web-build:
+    image: docker.io/node:20
+    working_dir: /app
+    environment:
+      VITE_API_BASE: /api
+    volumes:
+      - ./frontend:/app
+      - web_dist:/app/dist
+    command: sh -c "npm install && npm ci && npm run build -- --watch"
+
+  web:
+    image: docker.io/nginx:alpine
+    depends_on:
+      - api
+      - web-build
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - web_dist:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"
+
+volumes:
+  web_dist:

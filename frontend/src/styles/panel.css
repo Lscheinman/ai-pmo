@@ -1,0 +1,58 @@
+/* --- shared panel look on both columns --- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius, 14px);
+  box-shadow: 0 1.5px 9px rgba(0,0,0,0.09);
+  overflow: hidden;             /* keep toolbar + body within rounded corners */
+  display: flex;
+  flex-direction: column;
+}
+
+/* unified toolbar for both */
+.panel__toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--panel);
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  box-shadow: none;             /* remove per-toolbar shadow; panel has the shadow */
+}
+.panel__toolbar .spacer { flex: 1; }
+
+/* body paddings */
+.panel__body { padding: 10px 12px; }
+.panel__body--gantt { padding: 6px 8px 10px; }
+
+/* make table integrate with the panel (no own card chrome) */
+.panel .project-table {
+  width: 100%;
+  margin: 0;                    /* override your 0.4rem */
+  background: transparent;      /* override card bg */
+  border-radius: 0;             /* no inner rounding */
+  box-shadow: none;             /* no inner shadow */
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.panel .project-table th,
+.panel .project-table td {
+  padding: 0.55em 0.85em;
+  border-bottom: 1px solid var(--line);
+}
+.panel .project-table thead th {
+  padding: 0.65em 0.85em;
+}
+.panel .project-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* make columns scroll nicely with sticky toolbars */
+.table-col.panel,
+.gantt-col.panel {
+  max-height: 50vh;
+  overflow: auto;               /* keeps your sticky working within panel */
+}

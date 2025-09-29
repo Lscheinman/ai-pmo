@@ -1,0 +1,77 @@
+/* ---- APP CARD ---- */
+.app-card {
+  background: var(--panel);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.17);
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+/* ---- HEADER ---- */
+.app-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  background: inherit;
+  padding: 0.9em 1.2em; /* even spacing on all sides */
+  border-bottom: 1.5px solid var(--border);
+}
+
+.app-card-header h3 {
+  flex: 1 1 auto;
+  font-size: 1.21rem;
+  font-weight: 700;
+  margin: 0;
+  min-width: 120px;
+  color: var(--accent);
+}
+
+.app-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  flex: 0 0 auto;
+}
+
+/* ---- BODY ---- */
+.app-card-body {
+  flex: 1;
+  overflow-y: auto;
+
+  /* Unified padding — gives space from edges */
+  padding: 1rem 1.2rem;
+
+  /* Smooth scrolling feel */
+  scroll-behavior: smooth;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .app-card-header {
+    flex-direction: column;
+    align-items: stretch; /* make elements full-width */
+    gap: 0.8rem;
+  }
+
+  .app-card-header h3 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .app-card-header .filter-input {
+    width: 100%; /* full-width search */
+  }
+
+  .app-card-header .app-card-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}
